@@ -1,14 +1,16 @@
-// Token Radar (radar-2): the entrypoint. Node 22, standard library only.
+// Token Radar (radar-3): the entrypoint. Node 22, standard library only.
 //
 // Reads the sealed snapshot from /input/snapshot.json (or --input <file|dir>),
-// scores every pre-token protocol with the model in lib/model.ts, writes the
-// ranked board to /output/board.json, writes the dashboard's data as
-// /output/data.js, copies this repository's dashboard/ to /output, decodes
-// the screenshots it stores as base64 text (screenshots/*.png.b64: the
-// repository holds UTF-8 text only, so the PNGs travel encoded) into
-// /output/screenshots/, and writes /output/dossier.json with the vendored
-// library. The program runs twice and writes identical bytes both times:
-// every sort has a slug tie-break and every write is plain JSON.
+// scores every rankable pre-token protocol with the peer-anchored model in
+// lib/model.ts, writes the ranked board to /output/board.json, writes the
+// dashboard's data as /output/data.js, copies this repository's dashboard/
+// to /output, decodes the screenshots it stores as base64 text
+// (screenshots/*.png.b64: the repository holds UTF-8 text only, so the PNGs
+// travel encoded) into /output/screenshots/, and writes /output/dossier.json
+// with the vendored library. The program runs twice and writes identical
+// bytes both times: every sort has a slug tie-break, the peer multiple is
+// rounded to 4 decimals before pricing so the dashboard's recompute matches
+// the board bit for bit, and every write is plain JSON.
 //
 // Outside the grader's container, MAKEFUN_OUTPUT_DIR stands in for /output:
 //   mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts --input ../input/snapshot.json
